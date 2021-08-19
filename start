@@ -1,0 +1,58 @@
+#!/bin/bash
+
+#Variables
+user=$(whoami)
+script_name=$(echo "start")
+server=$(hostname)
+thedate=$(date)
+
+#Welcome Message (Eventually make this work for any time of day)
+if [ $# -eq 0 ]; then
+	echo "Hello $user"
+	echo "Welcome to $server"
+	echo "What would you like to do today?"
+fi
+
+#Launch main.c
+cd ./scripts/main.program
+./main
+
+#Get exit status of main
+exit_status=$?
+
+#
+if [ $exit_status -eq 2 ]; then
+	../cpu_temp
+	cd ../..
+	exec ./$script_name 1
+fi
+
+#If main program exits with 2, update system software
+if [ $exit_status -eq 3 ]; then
+	../update_server 
+	cd ../..
+	exec ./$script_name 1
+fi
+
+#If main program exits with 3, then exit
+if [ $exit_status -eq 4 ]; then
+	echo "Disconnecting $USER from: $server"
+	pkill -SIGHUP -u $USER bash
+fi
+
+#If main program exits with 4, then shutdown
+if [ $exit_status -eq 5 ]; then
+	../restarts/restart 1	
+fi
+
+#If main program exits failure, print to log file
+if [ $? -eq 1 ]; then
+	echo "Main Program did not exit successfully!"
+	echo "--------------------" >> ./logs/errors.log
+	echo "Server Software Crashed" >> ./logs/errors.log
+	echo "$thedate" >> ./logs/errors.log
+fi
+
+cd ../..
+
+exit 0

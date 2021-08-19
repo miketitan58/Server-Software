@@ -1,0 +1,37 @@
+#!/bin/bash
+
+#Variables
+user=$(whoami)
+currdir=$(pwd)
+time=$(date)
+
+#Welcome
+echo -e "\e[44m***** WELCOME TO THE STEPP SERVER *****\e[0m"
+echo "User: $user"
+echo "Current Directory: $currdir"
+echo "Time: $time"
+
+#Hostname information
+echo -e "\e[44m***** HOSTNAME INFORMATION *****\e[0m"
+hostnamectl
+
+#File system disk space usage
+echo -e "\e[44m***** FILE SYSTEM DISK SPACE USAGE *****\e[0m"
+df -h
+
+#Free and used memory in the system
+echo -e "\e[44m***** FREE AND USED MEMORY *****\e[0m"
+free 
+
+#System uptime and load
+echo -e "\e[44m***** SYSTEM UPTIME AND LOAD *****\e[0m"
+uptime
+
+#Logged in users
+echo -e "\e[44m***** CURRENTLY LOGGED IN *****\e[0m"
+who
+
+#Top 5 memory consuming processes
+echo -e "\e[44m***** TOP 5 MEMORY CONSUMING PROCESSES *****\e[0m"
+ps -eo %mem,%cpu,comm --sort=-%mem | head -n 6
+echo -e "\e[1;32mDone.\e[0m"

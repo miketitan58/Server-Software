@@ -1,0 +1,36 @@
+#!/bin/bash
+
+#Variables
+thedate="$(date)"
+temperature=$(sudo vcgencmd measure_temp)
+numProcesses=$(ps -e | wc -l)
+theUptime="$(uptime)"
+
+#Modify temperature to just the value 'C
+thetemp="$(echo $temperature | sed -r -e 's/temp=([0-9]{2}\.[0-9])/\1/g')"
+
+#Modify uptime to just the time, users, and load avg
+theUptime="$(echo "$theUptime" | cut -d " " -f 3-12)"
+
+#Prints
+/home/mike/files/scripts/restarts/restartMessage
+
+#5 second delay
+sleep 5
+
+#MANUAL SERVER RESTART
+if [ $# -eq 1  ]; then
+	#Write to log file
+	echo "--------------------" >> ../../logs/restarts.log
+	echo "Manual Server Restart" >> ../../logs/restarts.log
+	echo "$thedate" >> ../../logs/restarts.log
+	echo "Uptime: $theUptime" >> ../../logs/restarts.log
+	echo "CPU Temperature: $thetemp" >> ../../logs/restarts.log
+	echo "Processes Running: $numProcesses" >> ../../logs/restarts.log
+
+else
+	exit 1
+fi
+
+#Restart server
+sudo shutdown -r now

@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#Variables
+thedate="$(date)"
+
+#Prints
+echo "--------------------"
+echo "Restarting Server..."
+echo "Current Time: $thedate"
+echo "--------------------"

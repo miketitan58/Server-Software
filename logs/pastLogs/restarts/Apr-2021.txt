@@ -1,0 +1,13 @@
+====================
+
+SERVER RESTART LOGS
+
+====================
+SAMPLE RESTART MESSAGE:
+--------------------
+Automatic Server Restart
+Mon 01 Mar 2021 11:59:02 AM ---
+Uptime: up 23:59,  0 users,  load average: 0.00, 0.00,
+CPU Temperature: 37.9'C
+Processes Running: 123
+

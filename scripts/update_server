@@ -1,0 +1,25 @@
+#!/bin/bash
+
+#Variables
+script_name=$1
+thedate="$(date)"
+version="$(uname -a)"
+
+echo "Grabbing Updates..."
+sudo apt-get update -qq
+#If there are upgradeable packages, update; else continue
+updates=$(apt list --upgradeable |& grep -Ev '^(Listing|WARNING)')
+if [[ -n $updates ]]; then
+	echo "Updating System Software..."
+	sudo apt-get upgrade -yqq
+	echo "Update Complete!"
+	echo "--------------------" >> ../../logs/updates.log
+	echo "System Software was " >> ../../logs/updates.log
+	echo "Updated on:" >> ../../logs/updates.log
+	echo "$thedate" >> ../../logs/updates.log
+	echo "$version" >> ../../logs/updates.log
+	echo "Initiating Server Restart..."
+	../restarts/restart 1
+else
+	echo "System is currently up to date"
+fi

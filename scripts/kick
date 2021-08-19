@@ -1,0 +1,31 @@
+#!/bin/bash
+
+theDate="$(date)"
+host=$(hostname)
+
+#Usage
+if [ $# -ne 1 ]; then
+	echo "Usage: $0 <user>"
+	exit 1
+fi
+
+#get all online users
+online=$(who | cut -d " " -f 1-1)
+
+#Isolate user
+userFound="$(echo "$online" | sed -r -e "/$1/!d")"
+
+#If user is online, kick user
+if [[ $userFound == $1 ]]; then
+	#kick
+	sudo pkill -KILL -u $1
+	#message
+	echo "$1 has been disconnected from: $host"
+
+	#Write message to log file
+	echo "--------------------" >> /etc/server_software/logs/kicked.log
+	echo "$1 was kicked from $host" >> /etc/server_software/logs/kicked.log
+	echo "$theDate" >> /etc/server_software/logs/kicked.log
+fi
+
+exit 0

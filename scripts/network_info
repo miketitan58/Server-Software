@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#Netstat
+echo -e "\e[44m***** NETWORK STATS *****\e[0m"
+netstat
+
+#Hostname info
+echo -e "\e[44m***** HOST INFORMATION *****\e[0m"
+hostnamectl
+
+#Ifconfig
+echo -e "\e[44m***** INTERFACE CONFIGURATION *****\e[0m"
+ifconfig

@@ -1,0 +1,50 @@
+#!/bin/bash
+
+#Get the date
+thedate="$(date)"
+
+#Create name for file 
+tempName="$(echo "$thedate" | cut -d " " -f 3-4)"
+oldName=$(echo "$tempName" | sed -r -e 's/[ \t]/-/g')
+
+#Get current month
+month="$(echo "$oldName" | sed -r -e 's/([A-Z][a-z]{2})-[0-9]{4}/\1/g')"
+
+#Get current year
+year="$(echo "$oldName" | sed -r -e 's/[A-Z][a-z]{2}-([0-9]{4})/\1/g')"
+
+#Bunch of if statements to change the month
+if [ $month == "Jan" ]; then
+	month="$(echo "Dec")"
+elif [ $month == "Feb" ]; then
+	month="$(echo "Jan")"
+elif [ $month == "Mar" ]; then
+	month="$(echo "Feb")"
+elif [ $month == "Apr" ]; then
+	month="$(echo "Mar")"
+elif [ $month == "May" ]; then
+	month="$(echo "Apr")"
+elif [ $month == "Jun" ]; then
+	month="$(echo "May")"
+elif [ $month == "Jul" ]; then
+	month="$(echo "Jun")"
+elif [ $month == "Aug" ]; then
+	month="$(echo "Jul")"
+elif [ $month == "Sep" ]; then
+	month="$(echo "Aug")"
+elif [ $month == "Oct" ]; then
+	month="$(echo "Sep")"
+elif [ $month == "Nov" ]; then
+	month="$(echo "Oct")"
+elif [ $month == "Dec" ]; then
+	month="$(echo "Nov")"
+fi	
+
+#Create new file name
+newName="$(echo "$month-$year")"
+
+#Copy log file into restart directory
+cp ../../logs/restarts.log ../../logs/pastLogs/restarts/$newName.txt
+
+#Replace current log file with template
+cp ../../logs/backups/restarts.log.sav ../../logs/restarts.log
