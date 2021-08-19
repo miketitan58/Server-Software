@@ -7,24 +7,24 @@ EXAMPLES SHOW BELOW OF WHAT RESTART LOG MESSAGES WILL LOOK LIKE
 --------------------
 Automatic Server Restart
 Sat 01 May 2021 11:59:02 AM ---
-Uptime: up 14:44,  0 users,  load average: 0.00, 0.00,
+Uptime: up 14:44,  -- users,  load average: 0.00, 0.00,
 CPU Temperature: 38.4'C
 Processes Running: 131
 --------------------
 Manual Server Restart
 Sat 01 May 2021 05:07:10 PM ---
-Uptime: up  5:07,  1 user,  load average: 0.68,
+Uptime: up  5:07,  -- users,  load average: 0.68,
 CPU Temperature: 42.3'C
 Processes Running: 140
 --------------------
 Automatic Server Restart
 Sun 02 May 2021 11:59:01 AM ---
-Uptime: up 18:51,  0 users,  load average: 0.00, 0.00,
+Uptime: up 18:51,  -- users,  load average: 0.00, 0.00,
 CPU Temperature: 39.9'C
 Processes Running: 127
 --------------------
 Manual Server Restart
 Mon 03 May 2021 10:14:46 AM ---
-Uptime: up 22:15,  1 user,  load average: 0.28, 0.11,
+Uptime: up 22:15,  -- users,  load average: 0.28, 0.11,
 CPU Temperature: 42.3'C
 Processes Running: 139
