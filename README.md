@@ -26,4 +26,4 @@ sofware is stored in and executing ./start
 **List of planned upcoming changes to Server Software**
 - Add more menu options to automize even more daily tasks
 - Add ability to change color scheme of the menu
-- design and add more efficient logging and analysis systems
+- Design and add more efficient logging and analysis systems
