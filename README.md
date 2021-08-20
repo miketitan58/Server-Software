@@ -1,6 +1,6 @@
 # What is Server Software
 This server software is a command line, menu-based program designed to make daily tasks with server work easy. The software achieves 
-this by by automating daily tasks and simpliflying long common commands on debian-based systems into quick menu choices.
+this by automating daily tasks and simpliflying long common commands on debian-based systems into quick menu choices.
 
 # Features
 - View system and network information
